@@ -15,7 +15,7 @@ model User {
   username String @unique
   displayName String
   images Image[]
-  tagsOwned Tag[]
+  tags Tag[]
 }
 
 model Image {
@@ -25,13 +25,20 @@ model Image {
   metadata Json 
   imagePathName String
   description String
-  tags Tag[]
+  tags ImageTagAssociation[]
 }
 
 model Tag {
   tagId String @id
   userId String 
   user User @relation(fields: [userId], references: [userId])
-  tags Image[] 
+  images ImageTagAssociation[]
+}
 
+model ImageTagAssociation {
+  id String @id  // You can use UUIDs or other unique identifiers
+  imageId String
+  tagId String
+  image Image @relation(fields: [imageId], references: [imageId])
+  tag Tag @relation(fields: [tagId], references: [tagId])
 }
