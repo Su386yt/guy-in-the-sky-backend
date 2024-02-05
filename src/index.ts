@@ -1,6 +1,7 @@
 import { PrismaClient } from '@prisma/client'
 import { getUser, getUserUUID } from './UserManager';
 import { randomUUID } from 'crypto';
+import { addImageToDatabase } from './ImageManager';
 
 
 
@@ -23,7 +24,9 @@ async function main() {
     const queriedUser = await getUser(currentUserId)
     console.log(queriedUser)
 
-    console.log("Creating new iamge")
+    console.log("Creating new image")
+    const uploadedImage = await addImageToDatabase("image.jpg", currentUserId, "Description")
+    console.log(uploadedImage)
 }
 
 main();

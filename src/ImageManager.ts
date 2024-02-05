@@ -1,16 +1,16 @@
+import { randomUUID } from 'crypto';
 import { exiftool } from 'exiftool-vendored';
 import { prisma } from '.';
-import { UUID, randomUUID } from 'crypto';
 
 
-export async function addImageToDatabase(imagePath: string, userid: UUID, description: string) {
+export async function addImageToDatabase(imagePath: string, userid: string, description: string) {
     const metadata = await extractMetadata(imagePath)
     const imageId = randomUUID().toString()
     
     const image = await prisma.image.create({
         data: {
             imageId: imageId,
-            userId: userid.toString(),
+            userId: userid,
             metadata: metadata,
             imagePathName: imagePath,
             description: description
