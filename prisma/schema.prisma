@@ -21,9 +21,9 @@ model User {
 model Image {
   imageId String @id @unique
   user User @relation(fields: [userId], references: [userId])
-  userId String
+  userId String 
   metadata Json 
-  imagePathName String
+  imagePathName String @unique
   description String
   tags ImageTagAssociation[]
 }

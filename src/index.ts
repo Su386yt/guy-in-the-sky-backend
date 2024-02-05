@@ -1,12 +1,12 @@
 import { PrismaClient } from '@prisma/client'
-import { v4 as uuidv4 } from 'uuid';
-import { getUser, getUserUUID } from './UserManagers';
+import { getUser, getUserUUID } from './UserManager';
+import { randomUUID } from 'crypto';
 
 
 
 export const prisma = new PrismaClient()
 
-const userId = uuidv4()
+const userId = randomUUID().toString()
 const username = "flagmaster"
 const displayName = "FlagMaster"
 
@@ -22,6 +22,8 @@ async function main() {
     console.log("Printing user data")
     const queriedUser = await getUser(currentUserId)
     console.log(queriedUser)
+
+    console.log("Creating new iamge")
 }
 
 main();
