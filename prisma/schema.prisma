@@ -7,11 +7,11 @@ generator client {
 
 datasource db {
   provider = "mysql"
-  url      = env("DATABASE_URL")
+  url = env("DATABASE_URL")
 }
 
 model User {
-  userId String @id
+  userId String @id @unique
   username String @unique
   displayName String
   images Image[]
@@ -19,7 +19,7 @@ model User {
 }
 
 model Image {
-  imageId String @id
+  imageId String @id @unique
   user User @relation(fields: [userId], references: [userId])
   userId String
   metadata Json 
@@ -29,14 +29,14 @@ model Image {
 }
 
 model Tag {
-  tagId String @id
+  tagId String @id @unique
   userId String 
   user User @relation(fields: [userId], references: [userId])
   images ImageTagAssociation[]
 }
 
 model ImageTagAssociation {
-  id String @id  // You can use UUIDs or other unique identifiers
+  associationId String @id @unique
   imageId String
   tagId String
   image Image @relation(fields: [imageId], references: [imageId])
