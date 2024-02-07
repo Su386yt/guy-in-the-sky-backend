@@ -2,6 +2,39 @@ import { randomUUID } from 'crypto';
 import { exiftool } from 'exiftool-vendored';
 import { prisma } from '.';
 
+export async function addTagToImage(imageId: string, tagId: string) {
+    return prisma.imageTagAssociation.create({
+        data: {
+            associationId: randomUUID(),
+            imageId: imageId,
+            tagId: tagId
+        }
+    })
+}
+
+export async function removeTagFromImage(imageId: string, tagId: string) {
+    return prisma.imageTagAssociation.deleteMany({
+        where: {
+            AND: [
+                { imageId: imageId },
+                { tagId: tagId }
+            ]
+        }
+    })
+}
+
+export async function modifyImageDescription(imageId: string, description: string) {
+    return await prisma.image.update({
+        where: {
+            imageId: imageId
+        },
+
+        data: {
+            description: description
+        }
+    })
+}
+
 
 export async function addImageToDatabase(imagePath: string, userid: string, description: string) {
     const metadata = await extractMetadata(imagePath)
