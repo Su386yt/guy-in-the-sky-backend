@@ -1,4 +1,4 @@
-import { prisma } from '.';
+import { prisma } from '..';
 
 export async function createNewUser(userId: string, username: string, displayName: string) {
     const user = await prisma.user.create({

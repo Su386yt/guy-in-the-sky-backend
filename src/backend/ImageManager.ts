@@ -1,6 +1,6 @@
 import { randomUUID } from 'crypto';
 import { exiftool } from 'exiftool-vendored';
-import { prisma } from '.';
+import { prisma } from '..';
 
 export async function addTagToImage(imageId: string, tagId: string) {
     return prisma.imageTagAssociation.create({
