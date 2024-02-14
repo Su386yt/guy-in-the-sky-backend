@@ -2,6 +2,7 @@ import { PrismaClient } from '@prisma/client';
 import { randomUUID } from 'crypto';
 import { run } from './api/api';
 import { loadGetUserEndpoint } from './api/users/getUser';
+import { loadSearchByUsernameEndpoint } from './api/users/seachByUsername';
 
 
 
@@ -13,8 +14,8 @@ const username = "flagmaster"
 const displayName = "FlagMaster"
 
 async function main() {
-    // console.log("Printing users")
-    // console.log(await prisma.user.findMany())
+    console.log("Printing users")
+    console.log(await prisma.user.findMany())
 
     // var currentUserId = userId
     // console.log("Printing user uuid")
@@ -33,6 +34,7 @@ async function main() {
 
 
     loadGetUserEndpoint()
+    loadSearchByUsernameEndpoint()
 }
 
 main();

@@ -1,3 +1,4 @@
+import { constrainedMemory } from 'process';
 import { prisma } from '..';
 
 export async function createNewUser(userId: string, username: string, displayName: string) {
@@ -11,6 +12,19 @@ export async function createNewUser(userId: string, username: string, displayNam
     prisma.$disconnect()
 
     return user
+}
+
+export async function searchUsersByUsernameKeyword(keyword: string) {
+    const users = await prisma.user.findMany({
+        where: {
+            username: {
+                contains: keyword
+            }
+        }
+    })
+    prisma.$disconnect()
+
+    return users
 }
 
 export async function getUser(userId: string) {
