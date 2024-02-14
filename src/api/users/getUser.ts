@@ -5,10 +5,11 @@ export function loadGetUserEndpoint() {
   api.post("/users/getUser", (req, res) => {
     console.log(req.body)
     try {
-      const uuid: string = req.body.uuid
+      const uuid: string = req.body.userid
       if (uuid == null ) {
         res.status(400)
         res.send("Bad Request: No user provided")
+        return
       }
       getUser(uuid).then( (user) => {
         console.log(user)
@@ -22,6 +23,7 @@ export function loadGetUserEndpoint() {
         console.error(exception)
         res.status(500)
         res.send("Internal Server Error")
+        return
       })
       
     } catch (exception) {

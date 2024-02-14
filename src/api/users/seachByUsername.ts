@@ -9,6 +9,7 @@ export function loadSearchByUsernameEndpoint() {
       if (keyword == null ) {
         res.status(400)
         res.send("Bad Request: No keyword provided")
+        return
       }
       
       searchUsersByUsernameKeyword(keyword).then((users) => {
@@ -24,6 +25,7 @@ export function loadSearchByUsernameEndpoint() {
         console.error(error)
         res.status(500)
         res.send(`Internal server error`)
+        return
       })
       
 
@@ -31,6 +33,7 @@ export function loadSearchByUsernameEndpoint() {
       console.error(exception)
       res.status(500)
       res.send("Internal Server Error")
+      return
     }
   });
 }
