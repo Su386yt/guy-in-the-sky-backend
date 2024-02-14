@@ -1,6 +1,5 @@
 # guy-in-the-sky-backend
 
-
 ## Endpoints
 
 ### /users/
