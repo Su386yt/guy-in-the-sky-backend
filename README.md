@@ -11,7 +11,7 @@ A ``POST`` endpoint expecting a JSON content type containing the uuid of the use
 Example: 
 ```json
 { 
-    "userid": "<user uuid>"
+    "userid": "b3ee8a87-ad0d-4871-a0bd-673838bf098e"
 }
 ```
 Returns: a JSON object with the user data.
